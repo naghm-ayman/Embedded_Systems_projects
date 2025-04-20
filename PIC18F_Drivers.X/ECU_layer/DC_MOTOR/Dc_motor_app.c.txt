@@ -1,0 +1,65 @@
+/* 
+ * File:   application.c
+ * Author: NAGHM.A.O
+ *
+ * Created on 14 March 2024, 20:02
+ */
+#include "application.h"
+
+dc_motor_t dc_motor_1 = {
+  .dc_motor[DC_motor_Pin1].port = PortC_index,
+  .dc_motor[DC_motor_Pin1].pin = GPIO_Pin0,
+  .dc_motor[DC_motor_Pin1].logic = DC_motor_OFF_status,
+  .dc_motor[DC_motor_Pin1].direction = GPIO_Output_direction,
+  .dc_motor[DC_motor_Pin2].port = PortC_index,
+  .dc_motor[DC_motor_Pin2].pin = GPIO_Pin1,
+  .dc_motor[DC_motor_Pin2].logic = DC_motor_OFF_status,
+  .dc_motor[DC_motor_Pin2].direction = GPIO_Output_direction
+};
+dc_motor_t dc_motor_2 = {
+  .dc_motor[DC_motor_Pin1].port = PortC_index,
+  .dc_motor[DC_motor_Pin1].pin = GPIO_Pin2,
+  .dc_motor[DC_motor_Pin1].logic = DC_motor_OFF_status,
+  .dc_motor[DC_motor_Pin1].direction = GPIO_Output_direction,
+  .dc_motor[DC_motor_Pin2].port = PortC_index,
+  .dc_motor[DC_motor_Pin2].pin = GPIO_Pin3,
+  .dc_motor[DC_motor_Pin2].logic = DC_motor_OFF_status,
+  .dc_motor[DC_motor_Pin2].direction = GPIO_Output_direction
+};
+
+int main() {
+    Std_ReturnType ret = E_NOK;
+
+    intialization_fun();
+
+ while(1){
+     
+     ret = dc_motor_move_right(&dc_motor_1);
+     ret = dc_motor_move_right(&dc_motor_2);
+     __delay_ms(3000);
+     
+    ret = dc_motor_stop(&dc_motor_1);
+    ret = dc_motor_stop(&dc_motor_2);
+     __delay_ms(3000);
+     
+     ret = dc_motor_move_left(&dc_motor_1);
+     ret = dc_motor_move_left(&dc_motor_2);
+     __delay_ms(3000);
+     
+    ret = dc_motor_stop(&dc_motor_1);
+    ret = dc_motor_stop(&dc_motor_2);
+     __delay_ms(3000);
+     
+      ret = dc_motor_move_right(&dc_motor_1);
+     ret = dc_motor_move_right(&dc_motor_2);
+     __delay_ms(3000);
+     
+  }
+        return(EXIT_SUCCESS);
+
+ }
+void intialization_fun(void){
+    Std_ReturnType ret = E_NOK;
+    ret = dc_motor_intialization(&dc_motor_1);
+    ret = dc_motor_intialization(&dc_motor_2);
+}

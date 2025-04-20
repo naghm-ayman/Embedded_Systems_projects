@@ -1,0 +1,140 @@
+/* 
+ * File:   application.c
+ * Author: NAGHM.A.O
+ *
+ * Created on 14 March 2024, 20:02
+ */
+
+#include "application.h"
+
+Std_ReturnType ret = E_NOK;
+
+led_t led1 ={
+  .port_name = PortD_index,
+  .pin = GPIO_Pin0,
+  .led_status = GPIO_LOW
+};
+led_t led2 ={
+  .port_name = PortD_index,
+  .pin = GPIO_Pin1,
+  .led_status = GPIO_LOW
+};
+uint8 eusart_val = 0;
+volatile uint32  inc_tx_val , inc_rx_val;
+
+void USART_module_init(void){
+    usart_t usart_obj;
+    usart_obj.baudrate = 9600;
+    usart_obj.baudrate_gen_config = BuadRate_ASYNC_8BIT_LOW_SPEED;
+    
+    usart_obj.usart_tx_cfg.usart_tx_enable = EUSART_ASYNCHRONOUS_TX_ENABLE;
+    usart_obj.usart_tx_cfg.usart_tx_interrupt_enable = EUSART_ASYNCHRONOUS_INTERRUPT_TX_DISABLE;
+    usart_obj.usart_tx_cfg.usart_tx_9bit_enable = EUSART_ASYNCHRONOUS_9BIT_TX_DISABLE;
+    
+    usart_obj.usart_rx_cfg.usart_rx_enable = EUSART_ASYNCHRONOUS_RX_ENABLE;
+    usart_obj.usart_rx_cfg.usart_rx_interrupt_enable = EUSART_ASYNCHRONOUS_INTERRUPT_RX_DISABLE;
+    usart_obj.usart_rx_cfg.usart_rx_9bit_enable = EUSART_ASYNCHRONOUS_9BIT_RX_DISABLE;
+    
+    usart_obj.EUSART_TX_InterruptHandler = NULL;
+    usart_obj.EUSART_RX_InterruptHandler = NULL;
+    usart_obj.EUSART_FramingErrorHandler = NULL;
+    usart_obj.EUSART_OverRunErrorHandler = NULL;
+    
+    ret = EUSART_ASYNC_Init(&usart_obj);
+}
+void EUSART_Default_TX_InterruptHandler(void){
+        inc_tx_val++;
+}
+void EUSART_Default_RX_InterruptHandler(void){
+    inc_rx_val++;
+    ret = EUSART_ASYNC_ReadByte_NonBlocking(&eusart_val);
+    switch(eusart_val) {
+        case 'a':
+            led_turn_on(&led1);
+            ret = EUSART_ASYNC_WriteString_Blocking("LED1 ON\r", 8);
+            break;
+        case 'b':
+            led_turn_off(&led1);
+            ret = EUSART_ASYNC_WriteString_Blocking("LED1 OFF\r", 9);
+            break;
+        case 'c':
+            led_turn_on(&led2);
+            ret = EUSART_ASYNC_WriteString_Blocking("LED2 ON\r", 8);
+            break;
+        case 'd':
+            led_turn_off(&led2);
+            ret = EUSART_ASYNC_WriteString_Blocking("LED1 OFF\r", 9);
+            break;
+        default:
+            led_turn_off(&led1);
+            led_turn_off(&led2);
+            break;
+    }      
+}
+void EUSART_Default_FramingError_InterruptHandler(void){
+    uint8 _data = ZERO_INIT;
+    ret =  EUSART_ASYNC_ReadByte_NonBlocking(&_data);
+}
+void EUSART_Default_OverRunError_InterruptHandler(void){
+      ret = EUSART_ASYNC_RX_Restart();
+}
+void USART_module__interrupt_init(void){
+    usart_t usart_obj;
+    usart_obj.baudrate = 9600;
+    usart_obj.baudrate_gen_config = BuadRate_ASYNC_8BIT_LOW_SPEED;
+    
+    usart_obj.usart_tx_cfg.usart_tx_enable = EUSART_ASYNCHRONOUS_TX_ENABLE;
+    usart_obj.usart_tx_cfg.usart_tx_interrupt_enable = EUSART_ASYNCHRONOUS_INTERRUPT_TX_ENABLE;
+    usart_obj.usart_tx_cfg.usart_tx_9bit_enable = EUSART_ASYNCHRONOUS_9BIT_TX_DISABLE;
+    
+    usart_obj.usart_rx_cfg.usart_rx_enable = EUSART_ASYNCHRONOUS_RX_ENABLE;
+    usart_obj.usart_rx_cfg.usart_rx_interrupt_enable = EUSART_ASYNCHRONOUS_INTERRUPT_RX_ENABLE;
+    usart_obj.usart_rx_cfg.usart_rx_9bit_enable = EUSART_ASYNCHRONOUS_9BIT_RX_DISABLE;
+    
+    usart_obj.EUSART_TX_InterruptHandler = EUSART_Default_TX_InterruptHandler;
+    usart_obj.EUSART_RX_InterruptHandler = EUSART_Default_RX_InterruptHandler;
+    usart_obj.EUSART_FramingErrorHandler = EUSART_Default_FramingError_InterruptHandler;
+    usart_obj.EUSART_OverRunErrorHandler = EUSART_Default_OverRunError_InterruptHandler;
+    
+    ret = EUSART_ASYNC_Init(&usart_obj);
+}
+
+int main() {
+    Std_ReturnType ret = E_NOK;
+    intialization_fun();
+    USART_module__interrupt_init();
+    ret = led_intialization(&led1);
+    ret = led_intialization(&led2);
+ while(1){
+//     ret = EUSART_ASYNC_WriteByte_Blocking('a');
+//     __delay_ms(100);
+//     ret = EUSART_ASYNC_WriteByte_Blocking('b');
+//     __delay_ms(100);
+     
+//    ret = EUSART_ASYNC_WriteString_Blocking("hallo\r",6);
+//     if(ret == E_OK){
+//          if(eusart_val == 'a'){
+//         led_turn_on(&led1);
+//         ret = EUSART_ASYNC_WriteString_Blocking("LED ON\r",7);
+//     }
+//     else if(eusart_val == 'b'){
+//         led_turn_off(&led1);
+//         ret = EUSART_ASYNC_WriteString_Blocking("LED Off\r",8);
+//     }
+//     else{
+//         /* Nothing */
+//     }
+//     }
+//     else{
+//         /* Nothing */
+//     }
+     
+   
+  }
+     return(EXIT_SUCCESS);
+
+ }
+void intialization_fun(void){
+    Std_ReturnType ret = E_NOK;
+    ecu_layer_intialize();
+}

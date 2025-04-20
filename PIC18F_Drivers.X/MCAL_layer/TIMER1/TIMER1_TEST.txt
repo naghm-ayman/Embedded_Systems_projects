@@ -1,0 +1,62 @@
+/* 
+ * File:   application.c
+ * Author: NAGHM.A.O
+ *
+ * Created on 14 March 2024, 20:02
+ */
+
+#include "application.h"
+
+volatile uint32 timer_on;
+volatile uint16_t timer_counter_val;
+timer1_t counter1_obg;
+led_t led1 ={
+  .port_name = PortD_index,
+  .pin = GPIO_Pin0,
+  .led_status = GPIO_LOW
+};
+
+void Default_InterruptHandler(void){
+   timer_on++;
+   led_toggle(&led1);
+}
+
+void timer1_timer_mode(void){
+    timer1_t timer1_obg;
+    timer1_obg.TIMER1_InterruptHandler = Default_InterruptHandler;
+    timer1_obg.priority = Interrupt_Low_Priority;
+    timer1_obg.timer1_mode = TIMER1_TIMER_MODE;
+    timer1_obg.timer1_prescaler_value = TIMER1_PRESCALER_DIV_BY_4;
+    timer1_obg.timer1_preload_value = 15536;
+    timer1_obg.timer1_reg_rw_mode = TIMER1_RW_REG_16BITS_MODE;
+    TIMER1_Init(&timer1_obg);
+}
+
+int main() {
+    Std_ReturnType ret = E_NOK;
+    intialization_fun();
+   
+    //timer1_timer_mode();
+     counter1_obg.TIMER1_InterruptHandler = NULL;
+    counter1_obg.priority = Interrupt_Low_Priority;
+    counter1_obg.timer1_mode = TIMER1_COUNTER_MODE;
+    counter1_obg.timer1_prescaler_value = TIMER1_PRESCALER_DIV_BY_1;
+    counter1_obg.timer1_preload_value = 0;
+    counter1_obg.timer1_reg_rw_mode = TIMER1_RW_REG_16BITS_MODE;
+    counter1_obg.timer1_counter_mode = TIMER1_SYNC_COUNTER_MODE;
+    
+    ret = led_intialization(&led1);
+    ret = TIMER1_Init(&counter1_obg);
+    
+ while(1){
+     ret = TIMER1_Read_value(&counter1_obg,&timer_counter_val);
+        
+     
+  }
+     return(EXIT_SUCCESS);
+
+ }
+void intialization_fun(void){
+    Std_ReturnType ret = E_NOK;
+    ecu_layer_intialize();
+}

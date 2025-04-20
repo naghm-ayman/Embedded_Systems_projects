@@ -1,0 +1,40 @@
+/* 
+ * File:   application.c
+ * Author: NAGHM.A.O
+ *
+ * Created on 14 March 2024, 20:02
+ */
+
+#include "application.h"
+
+timer2_t timer2_obj ;
+volatile uint32 timer_flag;
+
+ volatile void _InterruptHandler(void){
+   ++timer_flag;
+}
+
+
+
+int main() {
+    Std_ReturnType ret = E_NOK;
+    intialization_fun();
+    
+      
+ while(1){
+     
+       timer2_obj.TIMER2_InterruptHandler =  _InterruptHandler,
+        timer2_obj.priority = Interrupt_Low_Priority,
+        timer2_obj.timer2_prescaler_value = TIMER2_PRESCALER_DIV_BY_1,
+        timer2_obj.timer2_postscaler_value = TIMER2_POSTSCALER_DIV_BY_16,
+        timer2_obj.timer2_preload_value = 249,
+                ret = TIMER2_Init(&timer2_obj);
+     
+  }
+     return(EXIT_SUCCESS);
+
+ }
+void intialization_fun(void){
+    Std_ReturnType ret = E_NOK;
+    ecu_layer_intialize();
+}

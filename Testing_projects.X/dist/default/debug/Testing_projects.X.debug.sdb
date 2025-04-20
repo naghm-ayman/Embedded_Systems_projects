@@ -1,0 +1,272 @@
+[p GLOBOPT AUTOSTATIC IEEE_FLT IEEE_DBL LFSROK EMI_WORD ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F46K20 ]
+[d frameptr 4065 ]
+"4 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\fleq.c
+[v ___fleq __fleq `(b  1 e 0 0 ]
+"62 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\float.c
+[v ___ftpack __ftpack `(f  1 e 4 0 ]
+"86 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 4 0 ]
+"54 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 4 0 ]
+"62 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 4 0 ]
+"19 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\ftsub.c
+[v ___ftsub __ftsub `(f  1 e 4 0 ]
+"10 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"245
+[v ___flsub __flsub `(d  1 e 4 0 ]
+"11 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+"8 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+"15 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"91 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\Umul64.c
+[v ___omul __omul `(uo  1 e 8 0 ]
+"57 D:\MPLABXProjects\Testing_projects.X\main.c
+[v _main main `(v  1 e 1 0 ]
+"130
+[v _PWM_Duty_cycle PWM_Duty_cycle `(v  1 e 1 0 ]
+"50 D:\MPLABXProjects\Testing_projects.X\mcc_generated_files/mcc.c
+[v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
+"57
+[v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
+"59 D:\MPLABXProjects\Testing_projects.X\mcc_generated_files/memory.c
+[v _FLASH_ReadByte FLASH_ReadByte `(uc  1 e 1 0 ]
+"94
+[v _FLASH_WriteBlock FLASH_WriteBlock `(c  1 e 1 0 ]
+"150
+[v _FLASH_EraseBlock FLASH_EraseBlock `(v  1 e 1 0 ]
+"55 D:\MPLABXProjects\Testing_projects.X\mcc_generated_files/pin_manager.c
+[v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
+"345 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h
+[v _WPUB WPUB `VEuc  1 e 1 @3964 ]
+"446
+[v _ANSEL ANSEL `VEuc  1 e 1 @3966 ]
+"508
+[v _ANSELH ANSELH `VEuc  1 e 1 @3967 ]
+[s S153 . 1 `uc 1 RD0 1 0 :1:0 
+`uc 1 RD1 1 0 :1:1 
+`uc 1 RD2 1 0 :1:2 
+`uc 1 RD3 1 0 :1:3 
+`uc 1 RD4 1 0 :1:4 
+`uc 1 RD5 1 0 :1:5 
+`uc 1 RD6 1 0 :1:6 
+`uc 1 RD7 1 0 :1:7 
+]
+"1221
+[s S162 . 1 `uc 1 PSP0 1 0 :1:0 
+`uc 1 PSP1 1 0 :1:1 
+`uc 1 PSP2 1 0 :1:2 
+`uc 1 PSP3 1 0 :1:3 
+`uc 1 PSP4 1 0 :1:4 
+`uc 1 PSP5 1 0 :1:5 
+`uc 1 PSP6 1 0 :1:6 
+`uc 1 PSP7 1 0 :1:7 
+]
+[s S171 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 P1B 1 0 :1:5 
+`uc 1 P1C 1 0 :1:6 
+`uc 1 P1D 1 0 :1:7 
+]
+[s S176 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 SS2 1 0 :1:7 
+]
+[u S179 . 1 `S153 1 . 1 0 `S162 1 . 1 0 `S171 1 . 1 0 `S176 1 . 1 0 ]
+[v _PORTDbits PORTDbits `VES179  1 e 1 @3971 ]
+"1532
+[v _LATA LATA `VEuc  1 e 1 @3977 ]
+"1644
+[v _LATB LATB `VEuc  1 e 1 @3978 ]
+"1756
+[v _LATC LATC `VEuc  1 e 1 @3979 ]
+"1868
+[v _LATD LATD `VEuc  1 e 1 @3980 ]
+"1980
+[v _LATE LATE `VEuc  1 e 1 @3981 ]
+"2032
+[v _TRISA TRISA `VEuc  1 e 1 @3986 ]
+"2254
+[v _TRISB TRISB `VEuc  1 e 1 @3987 ]
+"2476
+[v _TRISC TRISC `VEuc  1 e 1 @3988 ]
+"2698
+[v _TRISD TRISD `VEuc  1 e 1 @3989 ]
+"2920
+[v _TRISE TRISE `VEuc  1 e 1 @3990 ]
+"3072
+[v _OSCTUNE OSCTUNE `VEuc  1 e 1 @3995 ]
+[s S364 . 1 `uc 1 CCP2IF 1 0 :1:0 
+`uc 1 TMR3IF 1 0 :1:1 
+`uc 1 HLVDIF 1 0 :1:2 
+`uc 1 BCLIF 1 0 :1:3 
+`uc 1 EEIF 1 0 :1:4 
+`uc 1 C2IF 1 0 :1:5 
+`uc 1 C1IF 1 0 :1:6 
+`uc 1 OSCFIF 1 0 :1:7 
+]
+"3478
+[s S373 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 LVDIF 1 0 :1:2 
+]
+[s S376 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 CMIF 1 0 :1:6 
+]
+[u S379 . 1 `S364 1 . 1 0 `S373 1 . 1 0 `S376 1 . 1 0 ]
+[v _PIR2bits PIR2bits `VES379  1 e 1 @4001 ]
+[s S328 . 1 `uc 1 RD 1 0 :1:0 
+`uc 1 WR 1 0 :1:1 
+`uc 1 WREN 1 0 :1:2 
+`uc 1 WRERR 1 0 :1:3 
+`uc 1 FREE 1 0 :1:4 
+`uc 1 . 1 0 :1:5 
+`uc 1 CFGS 1 0 :1:6 
+`uc 1 EEPGD 1 0 :1:7 
+]
+"3634
+[s S337 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 EEFS 1 0 :1:6 
+]
+[u S340 . 1 `S328 1 . 1 0 `S337 1 . 1 0 ]
+[v _EECON1bits EECON1bits `VES340  1 e 1 @4006 ]
+"3679
+[v _EECON2 EECON2 `VEuc  1 e 1 @4007 ]
+"3686
+[v _EEDATA EEDATA `VEuc  1 e 1 @4008 ]
+"3693
+[v _EEADR EEADR `VEuc  1 e 1 @4009 ]
+"3755
+[v _EEADRH EEADRH `VEuc  1 e 1 @4010 ]
+[s S236 . 1 `uc 1 CCP1M 1 0 :4:0 
+`uc 1 DC1B 1 0 :2:4 
+`uc 1 P1M 1 0 :2:6 
+]
+"4998
+[s S240 . 1 `uc 1 CCP1M0 1 0 :1:0 
+`uc 1 CCP1M1 1 0 :1:1 
+`uc 1 CCP1M2 1 0 :1:2 
+`uc 1 CCP1M3 1 0 :1:3 
+`uc 1 DC1B0 1 0 :1:4 
+`uc 1 DC1B1 1 0 :1:5 
+`uc 1 P1M0 1 0 :1:6 
+`uc 1 P1M1 1 0 :1:7 
+]
+[u S249 . 1 `S236 1 . 1 0 `S240 1 . 1 0 ]
+[v _CCP1CONbits CCP1CONbits `VES249  1 e 1 @4029 ]
+"5065
+[v _CCPR1L CCPR1L `VEuc  1 e 1 @4030 ]
+"5783
+[v _PR2 PR2 `VEuc  1 e 1 @4043 ]
+"6455
+[v _OSCCON OSCCON `VEuc  1 e 1 @4051 ]
+[s S37 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 NOT_RBPU 1 0 :1:7 
+]
+"6998
+[s S40 . 1 `uc 1 RBIP 1 0 :1:0 
+`uc 1 . 1 0 :1:1 
+`uc 1 TMR0IP 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 INTEDG2 1 0 :1:4 
+`uc 1 INTEDG1 1 0 :1:5 
+`uc 1 INTEDG0 1 0 :1:6 
+`uc 1 nRBPU 1 0 :1:7 
+]
+[s S49 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 RBPU 1 0 :1:7 
+]
+[u S52 . 1 `S37 1 . 1 0 `S40 1 . 1 0 `S49 1 . 1 0 ]
+[v _INTCON2bits INTCON2bits `VES52  1 e 1 @4081 ]
+[s S72 . 1 `uc 1 RBIF 1 0 :1:0 
+`uc 1 INT0IF 1 0 :1:1 
+`uc 1 TMR0IF 1 0 :1:2 
+`uc 1 RBIE 1 0 :1:3 
+`uc 1 INT0IE 1 0 :1:4 
+`uc 1 TMR0IE 1 0 :1:5 
+`uc 1 PEIE_GIEL 1 0 :1:6 
+`uc 1 GIE_GIEH 1 0 :1:7 
+]
+"7075
+[s S81 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 INT0F 1 0 :1:1 
+`uc 1 T0IF 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 INT0E 1 0 :1:4 
+`uc 1 T0IE 1 0 :1:5 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+[s S90 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 GIEL 1 0 :1:6 
+`uc 1 GIEH 1 0 :1:7 
+]
+[u S94 . 1 `S72 1 . 1 0 `S81 1 . 1 0 `S90 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES94  1 e 1 @4082 ]
+"7181
+[v _TABLAT TABLAT `VEuc  1 e 1 @4085 ]
+"7197
+[v _TBLPTRL TBLPTRL `VEuc  1 e 1 @4086 ]
+"7204
+[v _TBLPTRH TBLPTRH `VEuc  1 e 1 @4087 ]
+"7211
+[v _TBLPTRU TBLPTRU `VEuc  1 e 1 @4088 ]
+"7652
+[v _CCP1M2 CCP1M2 `VEb  1 e 0 @32234 ]
+"7655
+[v _CCP1M3 CCP1M3 `VEb  1 e 0 @32235 ]
+"8579
+[v _RB0 RB0 `VEb  1 e 0 @31752 ]
+"8582
+[v _RB1 RB1 `VEb  1 e 0 @31753 ]
+"8585
+[v _RB2 RB2 `VEb  1 e 0 @31754 ]
+"8588
+[v _RB3 RB3 `VEb  1 e 0 @31755 ]
+"8591
+[v _RB4 RB4 `VEb  1 e 0 @31756 ]
+"8675
+[v _RD0 RD0 `VEb  1 e 0 @31768 ]
+"8678
+[v _RD1 RD1 `VEb  1 e 0 @31769 ]
+"8966
+[v _T2CKPS0 T2CKPS0 `VEb  1 e 0 @32336 ]
+"8969
+[v _T2CKPS1 T2CKPS1 `VEb  1 e 0 @32337 ]
+"9041
+[v _TMR2ON TMR2ON `VEb  1 e 0 @32338 ]
+"9116
+[v _TRISC2 TRISC2 `VEb  1 e 0 @31906 ]
+"9134
+[v _TRISD0 TRISD0 `VEb  1 e 0 @31912 ]
+"9137
+[v _TRISD1 TRISD1 `VEb  1 e 0 @31913 ]
+"57 D:\MPLABXProjects\Testing_projects.X\main.c
+[v _main main `(v  1 e 1 0 ]
+{
+"129
+} 0
+"50 D:\MPLABXProjects\Testing_projects.X\mcc_generated_files/mcc.c
+[v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
+{
+"55
+} 0
+"55 D:\MPLABXProjects\Testing_projects.X\mcc_generated_files/pin_manager.c
+[v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
+{
+"94
+} 0
+"57 D:\MPLABXProjects\Testing_projects.X\mcc_generated_files/mcc.c
+[v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
+{
+"63
+} 0
+"130 D:\MPLABXProjects\Testing_projects.X\main.c
+[v _PWM_Duty_cycle PWM_Duty_cycle `(v  1 e 1 0 ]
+{
+[v PWM_Duty_cycle@DC_val DC_val `us  1 p 2 0 ]
+"135
+} 0

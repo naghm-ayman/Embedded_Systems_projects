@@ -1,0 +1,61 @@
+/* 
+ * File:   application.c
+ * Author: NAGHM.A.O
+ *
+ * Created on 14 March 2024, 20:02
+ */
+
+#include "application.h"
+
+ccp_t ccp1_obj;
+ccp_t ccp2_obj;
+timer2_t timer2_obj;
+
+int main() {
+    Std_ReturnType ret = E_NOK;
+    intialization_fun();
+    
+    ccp1_obj.ccp_inst = CCP1_INST;
+    ccp1_obj.CCP1_InterruptHandler = NULL;
+    ccp1_obj.ccp_mode = CCP1_PWM_MODE_SELECT;
+    ccp1_obj.pmw_frequancy = 20000;
+    ccp1_obj.pin_cfg.port = PortC_index;
+    ccp1_obj.pin_cfg.pin = GPIO_Pin2;
+    ccp1_obj.pin_cfg.direction = GPIO_Output_direction;
+    ccp1_obj.timer2_postscaler_value = CCP_TIMER2_POSTSCALER_DIV_BY_1;
+    ccp1_obj.timer2_prescaler_value = CCP_TIMER2_PRESCALER_DIV_BY_1;
+    ret = CCP_Init(&ccp1_obj);
+    
+    ccp2_obj.ccp_inst = CCP2_INST;
+    ccp2_obj.CCP1_InterruptHandler = NULL;
+    ccp2_obj.ccp_mode = CCP1_PWM_MODE_SELECT;
+    ccp2_obj.pmw_frequancy = 20000;
+    ccp2_obj.pin_cfg.port = PortC_index;
+    ccp2_obj.pin_cfg.pin = GPIO_Pin1;
+    ccp2_obj.pin_cfg.direction = GPIO_Output_direction;
+    ccp2_obj.timer2_postscaler_value = CCP_TIMER2_POSTSCALER_DIV_BY_1;
+    ccp2_obj.timer2_prescaler_value = CCP_TIMER2_PRESCALER_DIV_BY_1;
+    ret = CCP_Init(&ccp2_obj);
+    
+    timer2_obj.TIMER2_InterruptHandler = NULL;
+    timer2_obj.timer2_preload_value = 0;
+    timer2_obj.timer2_postscaler_value = TIMER2_POSTSCALER_DIV_BY_1;
+    timer2_obj.timer2_prescaler_value = TIMER2_PRESCALER_DIV_BY_1;
+    ret = TIMER2_Init(&timer2_obj);
+    
+   ret = CCP_PWM_Set_Duty(&ccp1_obj,50);
+   ret = CCP_PWM_Start(&ccp1_obj);
+   ret = CCP_PWM_Set_Duty(&ccp2_obj,75);
+   ret = CCP_PWM_Start(&ccp2_obj);
+      
+ while(1){
+    
+     
+  }
+     return(EXIT_SUCCESS);
+
+ }
+void intialization_fun(void){
+    Std_ReturnType ret = E_NOK;
+    ecu_layer_intialize();
+}

@@ -1,0 +1,62 @@
+/* 
+ * File:   application.c
+ * Author: NAGHM.A.O
+ *
+ * Created on 14 March 2024, 20:02
+ */
+
+#include "application.h"
+
+const uint8 custom_arr0[] = {0x0E, 0x0A, 0x11, 0x11, 0x11, 0x11, 0x1F, 0X00};
+const uint8 custom_arr1[] = {0x0E, 0x0A, 0x11, 0x11, 0x11, 0x1F, 0x1F, 0X00};
+const uint8 custom_arr2[] = {0x0E, 0x0A, 0x11, 0x11, 0x1F, 0x1F, 0x1F, 0X00};
+const uint8 custom_arr3[] = {0x0E, 0x0A, 0x11, 0x1F, 0x1F, 0x1F, 0x1F, 0X00};
+const uint8 custom_arr4[] = {0x0E, 0x0A, 0x1F, 0x1F, 0x1F, 0x1F, 0x1F, 0X00};
+const uint8 custom_arr5[] = {0x0E, 0x0E, 0x11, 0x11, 0x11, 0x11, 0x1F, 0X00};
+
+
+int main() {
+    Std_ReturnType ret = E_NOK;
+    intialization_fun();
+   
+
+    
+ while(1){
+     ret = lcd_8bit_send_custom_char(&lcd_2,1,20,custom_arr0,0);
+     __delay_ms(50);
+     ret = lcd_8bit_send_custom_char(&lcd_2,1,20,custom_arr1,0);
+     __delay_ms(50);
+     ret = lcd_8bit_send_custom_char(&lcd_2,1,20,custom_arr2,0);
+     __delay_ms(50);
+     ret = lcd_8bit_send_custom_char(&lcd_2,1,20,custom_arr2,0);
+     __delay_ms(50);
+     ret = lcd_8bit_send_custom_char(&lcd_2,1,20,custom_arr3,0);
+     __delay_ms(50);
+     ret = lcd_8bit_send_custom_char(&lcd_2,1,20,custom_arr4,0);
+     __delay_ms(50);
+     ret = lcd_8bit_send_custom_char(&lcd_2,1,20,custom_arr5,0);
+     __delay_ms(50);
+     
+       ret = lcd_4bit_send_custom_char(&lcd_1,1,20,custom_arr0,0);
+     __delay_ms(50);
+     ret = lcd_4bit_send_custom_char(&lcd_1,1,20,custom_arr1,0);
+     __delay_ms(50);
+     ret = lcd_4bit_send_custom_char(&lcd_1,1,20,custom_arr2,0);
+     __delay_ms(50);
+     ret = lcd_4bit_send_custom_char(&lcd_1,1,20,custom_arr2,0);
+     __delay_ms(50);
+     ret = lcd_4bit_send_custom_char(&lcd_1,1,20,custom_arr3,0);
+     __delay_ms(50);
+     ret = lcd_4bit_send_custom_char(&lcd_1,1,20,custom_arr4,0);
+     __delay_ms(50);
+     ret = lcd_4bit_send_custom_char(&lcd_1,1,20,custom_arr5,0);
+     __delay_ms(50);
+     
+  }
+     return(EXIT_SUCCESS);
+
+ }
+void intialization_fun(void){
+    Std_ReturnType ret = E_NOK;
+    ecu_layer_intialize();
+}

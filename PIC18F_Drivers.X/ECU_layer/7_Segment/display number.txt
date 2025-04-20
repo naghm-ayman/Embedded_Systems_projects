@@ -1,0 +1,72 @@
+/* 
+ * File:   application.c
+ * Author: NAGHM.A.O
+ *
+ * Created on 14 March 2024, 20:02
+ */
+#include "application.h"
+
+pin_config_t seg_1_enable ={
+  .port = PortD_index,
+  .pin = GPIO_Pin0,
+  .logic = GPIO_LOW,
+  .direction = GPIO_Output_direction
+};
+pin_config_t seg_2_enable ={
+  .port = PortD_index,
+  .pin = GPIO_Pin1,
+  .logic = GPIO_LOW,
+  .direction = GPIO_Output_direction
+};
+
+segment_t seg_1 = {
+    .segment_pin[Segment_PIN0].port = PortC_index,
+    .segment_pin[Segment_PIN0].pin = GPIO_Pin0,
+    .segment_pin[Segment_PIN0].logic = GPIO_LOW,
+    .segment_pin[Segment_PIN0].direction = GPIO_Output_direction,
+    .segment_pin[Segment_PIN1].port = PortC_index,
+    .segment_pin[Segment_PIN1].pin = GPIO_Pin1,
+    .segment_pin[Segment_PIN1].logic = GPIO_LOW,
+    .segment_pin[Segment_PIN1].direction = GPIO_Output_direction,
+    .segment_pin[Segment_PIN2].port = PortC_index,
+    .segment_pin[Segment_PIN2].pin = GPIO_Pin2,
+    .segment_pin[Segment_PIN2].logic = GPIO_LOW,
+    .segment_pin[Segment_PIN2].direction = GPIO_Output_direction,
+    .segment_pin[Segment_PIN3].port = PortC_index,
+    .segment_pin[Segment_PIN3].pin = GPIO_Pin3,
+    .segment_pin[Segment_PIN3].logic = GPIO_LOW,
+    .segment_pin[Segment_PIN3].direction = GPIO_Output_direction,
+    .segment_type = segment_common_anode,
+};
+uint8 number = 25, counter=0;
+
+int main() {
+    Std_ReturnType ret = E_NOK;
+
+    intialization_fun();
+
+ while(1){
+     for(counter=0 ; counter<=50; counter++){
+     ret = seven_segment_write_logic(&seg_1, (uint8)(number%10));
+     ret = gpio_pin_write_logic(&seg_1_enable, GPIO_HIGH);
+     __delay_ms(10);
+    ret = gpio_pin_write_logic(&seg_1_enable, GPIO_LOW);
+    
+     ret = seven_segment_write_logic(&seg_1, (uint8)(number/10));
+     ret = gpio_pin_write_logic(&seg_2_enable, GPIO_HIGH);
+     __delay_ms(10);
+    ret = gpio_pin_write_logic(&seg_2_enable, GPIO_LOW);
+
+     }       
+     number++;
+     
+  }
+        return(EXIT_SUCCESS);
+
+ }
+void intialization_fun(void){
+    Std_ReturnType ret = E_NOK;
+    ret = seven_segment_intialize(&seg_1);
+    ret = gpio_pin_intialize(&seg_1_enable);
+    ret = gpio_pin_intialize(&seg_2_enable);
+}

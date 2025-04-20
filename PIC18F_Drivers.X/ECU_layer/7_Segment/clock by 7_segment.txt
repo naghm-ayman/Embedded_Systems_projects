@@ -1,0 +1,63 @@
+/* 
+ * File:   application.c
+ * Author: NAGHM.A.O
+ *
+ * Created on 14 March 2024, 20:02
+ */
+#include "application.h"
+
+uint8 seconds = 45, minutes = 12, hours = 4; 
+uint8 counter = 0;
+
+int main() {
+    Std_ReturnType ret = E_NOK;
+
+    intialization_fun();
+
+ while(1){
+     for(counter=0; counter<50; counter++){
+         ret = gpio_port_write_logic(PortD_index, 0x3E);
+         ret = gpio_port_write_logic(PortC_index, ((uint8)hours/10));
+            __delay_us(3333);
+         ret = gpio_port_write_logic(PortD_index, 0x3D);
+         ret = gpio_port_write_logic(PortC_index, ((uint8)hours%10));
+            __delay_us(3333);
+         ret = gpio_port_write_logic(PortD_index, 0x3B);
+         ret = gpio_port_write_logic(PortC_index, ((uint8)minutes/10));
+            __delay_us(3333);
+         ret = gpio_port_write_logic(PortD_index, 0x37);
+         ret = gpio_port_write_logic(PortC_index, ((uint8)minutes%10));
+            __delay_us(3333);
+         ret = gpio_port_write_logic(PortD_index, 0x2F);
+         ret = gpio_port_write_logic(PortC_index, ((uint8)seconds/10));
+            __delay_us(3333);
+         ret = gpio_port_write_logic(PortD_index, 0x1F);
+         ret = gpio_port_write_logic(PortC_index, ((uint8)seconds%10));
+            __delay_us(3333);
+     }
+     seconds++;
+     if(seconds==60){
+         minutes++;
+         seconds=0;
+     }
+     if(minutes==60){
+         hours++;
+         minutes=0;
+     }
+     if(hours==24){
+         hours++;
+         hours=0;
+     }
+    
+     
+  }
+        return(EXIT_SUCCESS);
+
+ }
+void intialization_fun(void){
+    Std_ReturnType ret = E_NOK;
+    ret = gpio_port_direction_intialize(PortC_index, 0xF0);
+    ret = gpio_port_direction_intialize(PortD_index, 0xC0);
+   
+
+}

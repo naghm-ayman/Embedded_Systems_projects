@@ -1,0 +1,116 @@
+/* 
+ * File:   application.c
+ * Author: NAGHM.A.O
+ *
+ * Created on 14 March 2024, 20:02
+ */
+
+#include "application.h"
+
+
+led_t led1 ={
+  .port_name = PortC_index,
+  .pin = GPIO_Pin0,
+  .led_status = GPIO_LOW
+};
+led_t led2 ={
+  .port_name = PortC_index,
+  .pin = GPIO_Pin1,
+  .led_status = GPIO_LOW
+};
+led_t led3 ={
+  .port_name = PortC_index,
+  .pin = GPIO_Pin2,
+  .led_status = GPIO_LOW
+};
+led_t led4 ={
+  .port_name = PortC_index,
+  .pin = GPIO_Pin3,
+  .led_status = GPIO_LOW
+};
+void RB4_HIGH_INT_App_ISR(void){
+    led_turn_on(&led1);
+    __delay_ms(250);
+}
+void RB4_LOW_INT_App_ISR(void){
+    led_turn_on(&led2);
+    __delay_ms(250);
+}
+void RB5_HIGH_INT_App_ISR(void){
+    led_turn_off(&led1);
+    __delay_ms(250);
+}
+void RB5_LOW_INT_App_ISR(void){
+    led_turn_off(&led2);
+    __delay_ms(250);
+}
+void RB6_HIGH_INT_App_ISR(void){
+    led_turn_on(&led3);
+    __delay_ms(250);
+}
+void RB6_LOW_INT_App_ISR(void){
+    led_turn_on(&led4);
+    __delay_ms(250);
+}
+void RB7_HIGH_INT_App_ISR(void){
+    led_turn_off(&led3);
+    __delay_ms(250);
+}
+void RB7_LOW_INT_App_ISR(void){
+    led_turn_off(&led4);
+    __delay_ms(250);
+}
+interrupt_RBx_t int0_obj = {
+    .EXT_InterruptHandler_HIGH = RB4_HIGH_INT_App_ISR,
+    .EXT_InterruptHandler_LOW = RB4_LOW_INT_App_ISR,
+    .priority = Interrupt_High_Priority,
+    .mcu_pin.port = PortB_index,
+    .mcu_pin.pin = GPIO_Pin4,
+    .mcu_pin.direction = GPIO_Input_direction
+};
+interrupt_RBx_t int1_obj = {
+    .EXT_InterruptHandler_HIGH = RB5_HIGH_INT_App_ISR,
+    .EXT_InterruptHandler_LOW = RB5_LOW_INT_App_ISR,
+    .priority = Interrupt_High_Priority,
+    .mcu_pin.port = PortB_index,
+    .mcu_pin.pin = GPIO_Pin5,
+    .mcu_pin.direction = GPIO_Input_direction
+};
+interrupt_RBx_t int2_obj = {
+    .EXT_InterruptHandler_HIGH = RB6_HIGH_INT_App_ISR,
+    .EXT_InterruptHandler_LOW = RB6_LOW_INT_App_ISR,
+    .priority = Interrupt_High_Priority,
+    .mcu_pin.port = PortB_index,
+    .mcu_pin.pin = GPIO_Pin6,
+    .mcu_pin.direction = GPIO_Input_direction
+};
+interrupt_RBx_t int3_obj = {
+    .EXT_InterruptHandler_HIGH = RB7_HIGH_INT_App_ISR,
+    .EXT_InterruptHandler_LOW = RB7_LOW_INT_App_ISR,
+    .priority = Interrupt_High_Priority,
+    .mcu_pin.port = PortB_index,
+    .mcu_pin.pin = GPIO_Pin7,
+    .mcu_pin.direction = GPIO_Input_direction
+};
+
+int main() {
+    Std_ReturnType ret = E_NOK;
+    intialization_fun();
+    ret = led_intialization(&led1);
+    ret = led_intialization(&led2);
+    ret = led_intialization(&led3);
+    ret = led_intialization(&led4);
+    ret = Interrupt_RBx_Init(&int0_obj);
+    ret = Interrupt_RBx_Init(&int1_obj);
+    ret = Interrupt_RBx_Init(&int2_obj);
+    ret = Interrupt_RBx_Init(&int3_obj);
+ while(1){
+     
+  }
+     return(EXIT_SUCCESS);
+
+ }
+void intialization_fun(void){
+    Std_ReturnType ret = E_NOK;
+    ecu_layer_intialize();
+}
